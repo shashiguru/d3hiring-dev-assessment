@@ -1,22 +1,25 @@
 import { Registration } from "../entity/registration";
 import { Student } from "../entity/student";
-import { AppDataSource } from "../infrastucture/data-source";
+import { DataSource } from "typeorm"
 
-export class StudentService {
+export class StudentService implements IStudentService {
+
+    constructor(private db: DataSource) {
+    }
 
     public async CreateStudent(studentEmailId: string): Promise<void> {
         let student = new Student();
-        if ((await AppDataSource.manager.find(Student)).filter(x => x.email == studentEmailId).length == 0) {
+        if ((await this.db.manager.find(Student)).filter(x => x.email == studentEmailId).length == 0) {
             student.email = studentEmailId;
             student.status = true;
             student.createdDate = new Date();
             student.updatedDate = new Date();
-            await AppDataSource.manager.save(student);
+            await this.db.manager.save(student);
         }
     }
 
     public async SuspendStudent(emailId: string): Promise<boolean> {
-        const studentRepo = AppDataSource.getRepository(Student);
+        const studentRepo = this.db.getRepository(Student);
         const student = await studentRepo.findOneBy({ email: emailId })
         student.status = false;
         await studentRepo.save(student);
@@ -27,7 +30,7 @@ export class StudentService {
         let Ids=[];
         typeof(emailIds)=='string'?Ids.push(emailIds):Ids=emailIds;
         let commoStudents=[];
-        const students= await AppDataSource.getRepository(Registration)
+        const students= await this.db.getRepository(Registration)
         .createQueryBuilder("registration")
         .select("COUNT(registration.studentEmail) AS cnt, registration.studentEmail ")
         .where("registration.teacherEmail IN (:...ids)", { ids: Ids })
@@ -48,8 +51,8 @@ export class StudentService {
                 notifiedstudents.push(notification.split(' @')[i]);
             }
         }
-        let studentsRegistrations=(await AppDataSource.manager.find(Registration)).filter(x => x.teacherEmail == teacher);
-        let studentsData= await AppDataSource.manager.find(Student);
+        let studentsRegistrations=(await this.db.manager.find(Registration)).filter(x => x.teacherEmail == teacher);
+        let studentsData= await this.db.manager.find(Student);
         studentsRegistrations.map(async(student)=>{
                    if(studentsData.filter(x=>x.email==student.studentEmail)[0].status) 
                    {

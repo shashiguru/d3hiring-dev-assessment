@@ -28,7 +28,7 @@ export default class AdministrationController{
     
     public register = (req:Request, res:Response) => {
         try{
-            let response = req.services["IRegistrationService"].CreateRegitration(req.body.teacher, req.body.students);
+            let response = req.services["IRegistrationService"].CreateRegistration(req.body.teacher, req.body.students);
             if (response) {
                 res.status(204).json({
                     message: response

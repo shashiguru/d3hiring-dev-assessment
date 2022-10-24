@@ -6,7 +6,7 @@ import { AppDataSource } from "../infrastucture/data-source";
 import {routes} from "./administration/router";
 import { StudentService }  from "../services/student-service";
 import { TeacherService } from "../services/teacher-service";
-import { Registrtionservice } from "../services/registration-service";
+import { RegistrationService } from "../services/registration-service";
 
 // defining the Express app
 const app = express();
@@ -21,15 +21,18 @@ app.use(bodyParser.json());
 //enabling logging
 app.use(morgan('dev'));
 
-const services = async (req, res, next) => {
-  let ss = new StudentService();
-  let ts = new TeacherService();
+// Inject Services into Middleware
+const services = async (req, res, next) => {  // Can also Use a DI Container Library
+  let db = AppDataSource;
+  let ss = new StudentService(db);
+  let ts = new TeacherService(db);
   req.services = Object.freeze({
+    DataSource: db,
     IStudentService : ss,
     ITeacherService : ts,
-    IRegistrtionservice: new Registrtionservice(ts, ss)
+    IRegistrationService: new RegistrationService(db, ts, ss)
   });
-  next()
+  next();
 }
 
 // enabling routing of API

@@ -6,7 +6,7 @@ var mockData= require('./mock/data');
 
 var server = supertest.agent("http://localhost:3000");
 
-// unit test begin
+// Unit test begin
 
 describe("unit test for API",function(){
 
@@ -42,7 +42,7 @@ describe("unit test for API",function(){
     .expect("Content-type",/json/)
     .expect(204) 
     .end(function(err,res){
-      // HTTP status should be 200
+      // HTTP status should be 204
       res.status.should.equal(204);
       done();
     });

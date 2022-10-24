@@ -1,11 +1,12 @@
 import { Registration } from "../entity/registration";
-import { AppDataSource } from "../infrastucture/data-source";
+import { DataSource } from "typeorm"
 import { IStudentService } from "./student-service";
 import { ITeacherService} from "./teacher-service";
 
-export class Registrtionservice{
+export class RegistrationService implements IRegistrationService{
 
-    constructor(private teacherService:ITeacherService,
+    constructor(private db: DataSource,
+        private teacherService:ITeacherService,
         private studentService:IStudentService,) {
     }
 
@@ -14,10 +15,10 @@ export class Registrtionservice{
             registration.studentEmail=studentEmailId;
             registration.teacherEmail=teacherEmailId;
             registration.createdDate= new Date();
-            await AppDataSource.manager.save(registration)
+            await this.db.manager.save(registration)
     }
 
-    public async CreateRegitration(teacherEmailId:string, studentEmailIds:Array<string>):Promise<boolean>{
+    public async CreateRegistration(teacherEmailId:string, studentEmailIds:Array<string>):Promise<boolean>{
         await this.teacherService.CreateTeacher(teacherEmailId);
         studentEmailIds.forEach(async(studentEmailId)=>{
             await this.studentService.CreateStudent(studentEmailId);
@@ -27,6 +28,6 @@ export class Registrtionservice{
     }
 }
 
-export interface IRegistrtionservice{
-    CreateRegitration(teacherEmailId:string, studentEmailIds:Array<string>):Promise<boolean>
+export interface IRegistrationService{
+    CreateRegistration(teacherEmailId:string, studentEmailIds:Array<string>):Promise<boolean>
 }
