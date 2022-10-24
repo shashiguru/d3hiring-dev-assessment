@@ -108,8 +108,8 @@
     This endpoint is used to suspend given student.
      #### Request URL:
             GET https://d3hiring-dev-assessment.azurewebsites.net/api/suspend
-        
-     #### Response Body:
+
+     #### Request Body:
       ##### Schema:
            {
                 "student" : string
@@ -120,10 +120,43 @@
             }
       ##### Status code: 200
 
+    ### Retrieve Notifications
+    This endpoint is used to retieve reciepents of notifications.
+     #### Request URL:
+            POST https://d3hiring-dev-assessment.azurewebsites.net/api/retrievefornotifications
 
-details of end points
-its schema like request body and response
+     #### Request Body:
+     ##### Schema:
+            {
+            "teacher":  string,
+            "notification": string
+            }
+     ##### Example:
+            {
+            "teacher":  "teacherken@gmail.com",
+            "notification": "Hello students! @studentagnes@gmail.com @studentmiche@gmail.com"
+            }
+           
+     #### Response Body:
+      ##### Schema:
+           {
+            "recipients":
+                [
+                    string
+                ]   
+            }
+      ##### Example:
+           {
+            "recipients":
+                [
+                "studentbob@gmail.com",
+                "studentagnes@gmail.com", 
+                "studentmiche@gmail.com"
+                ]   
+            }
+      ##### Status code: 200
 
-## Testing
-Details of postman collection 
+## Testing Instructions
+Detailed postman collection is in github along with repo, you can access the details at
+https://github.com/shashiguru/d3hiring-dev-assessment/tree/main/postman_collection
 
