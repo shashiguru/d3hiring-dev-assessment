@@ -1,0 +1,11 @@
+{
+    "env":{
+        "PORT":3000,
+        "TYPE":"mysql",
+        "HOST":"sql6.freemysqlhosting.net",
+        "DB_PORT":3306,
+        "USERNAME":"sql6528223",
+        "PASSWORD":"mqilk9h8bDVysql",
+        "DATABASE":"sql6528223"
+    }
+}
