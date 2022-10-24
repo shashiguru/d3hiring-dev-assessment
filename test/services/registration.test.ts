@@ -1,4 +1,4 @@
-import { Registrtionservice } from "../../src/services/registration-service";
+import { RegistrationService } from "../../src/services/registration-service";
 import {expect, jest} from '@jest/globals';
 
 describe("Regristration Service",function(){
@@ -19,13 +19,13 @@ describe("Regristration Service",function(){
         db = { manager: {
             save: jest.fn(() => Promise.resolve())
         } }
-        subject = new Registrtionservice(db, teacherService, studentService);
+        subject = new RegistrationService(db, teacherService, studentService);
     });
 
     it("Create registration will create a teacher",async function(){
 
         // act
-        let actual = await subject.CreateRegitration('teacher@mailid', []);
+        let actual = await subject.CreateRegistration('teacher@mailid', []);
 
         //assert
         expect(teacherService.CreateTeacher.mock.calls.length).toBe(1);
@@ -37,7 +37,7 @@ describe("Regristration Service",function(){
         // Arrange
         let students = ['s1@gmail.com', 's2@gmail.com'];
 
-        let actual = await subject.CreateRegitration('teacher@mailid', students);
+        let actual = await subject.CreateRegistration('teacher@mailid', students);
 
         expect(studentService.CreateStudent.mock.calls.length).toBe(2);
         expect(studentService.CreateStudent.mock.calls[0][0]).toBe(students[0]);
@@ -51,7 +51,7 @@ describe("Regristration Service",function(){
         let students = ['s1@gmail.com', 's2@gmail.com'];
 
         // Act
-        let actual = await subject.CreateRegitration(teacher, students);
+        let actual = await subject.CreateRegistration(teacher, students);
 
         // Assert
         expect(db.manager.save.mock.calls.length).toBe(2);
