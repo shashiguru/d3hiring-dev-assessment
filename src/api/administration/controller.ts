@@ -1,18 +1,7 @@
 import {Request, Response} from "express";
-import StudentService from "../../services/student-service";
-import TeacherService from "../../services/teacher-service";
-import Registrtionservice from "../../services/registration-service";
-
 
 export default class AdministrationController{
-    studentService:StudentService;
-    teacherService:TeacherService;
-    registrationService:Registrtionservice;
-    constructor() {
-        this.studentService= new StudentService();
-        this.teacherService= new TeacherService();
-        this.registrationService= new Registrtionservice();
-    }
+
     public healthCheck=(req:Request, res:Response) => {
         res.status(200).json({
             message:"API is healthy!"
@@ -21,7 +10,7 @@ export default class AdministrationController{
     
     public commonStudents = async (req:Request, res:Response) => {
         try {
-            let response = await this.studentService.GetCommonStudents(req.query.teacher);
+            let response = await req.services["IStudentService"].GetCommonStudents(req.query.teacher);
             if(response){
                 res.status(200).json({
                     "students":response
@@ -39,7 +28,7 @@ export default class AdministrationController{
     
     public register = (req:Request, res:Response) => {
         try{
-            let response =this.registrationService.CreateRegitration(req.body.teacher, req.body.students);
+            let response = req.services["IRegistrationService"].CreateRegitration(req.body.teacher, req.body.students);
             if (response) {
                 res.status(204).json({
                     message: response
@@ -57,7 +46,7 @@ export default class AdministrationController{
     
     public suspend = (req:Request, res:Response) => {
         try{
-            const response=this.studentService.SuspendStudent(req.body.student);
+            const response = req.services["IStudentService"].SuspendStudent(req.body.student);
                 if (response) {
                     res.status(204).json({
                         message: response
@@ -75,7 +64,7 @@ export default class AdministrationController{
     
     public notifications = async (req:Request, res:Response) => {
         try{
-           const response= await this.studentService.RetrieveforNotifications(req.body.teacher, req.body.notification);
+           const response= await req.services["IStudentService"].RetrieveforNotifications(req.body.teacher, req.body.notification);
                     if (response) {
                         res.status(200).json({
                             "recipients": response

@@ -54,9 +54,73 @@
 ## API Details
 1. Below are API endpoints has implemented.
     ### Register
-    1. This endpoint is used to register the teacher and student.
+    This endpoint is used to register the teacher and student.
         #### Request URL:
-            https://d3hiring-dev-assessment.azurewebsites.net/api/register
+            POST https://d3hiring-dev-assessment.azurewebsites.net/api/register
+        
+        #### Request Body:
+         ##### Schema:
+            {
+                "teacher": string
+                "students":
+                        [
+                            string,
+                        ]
+            }
+         ##### Example:
+            {
+                "teacher": "teacherken@gmail.com"
+                "students":
+                    [
+                        "studentjon@gmail.com",
+                        "studenthon@gmail.com"
+                    ]
+            }
+        
+        #### Response:
+         ##### Status code: 204
+    
+    ### Common Students
+    This endpoint is used to reteive common students for given teachers.
+        #### Request URL:
+            GET https://d3hiring-dev-assessment.azurewebsites.net/api/commonstudents?teacher=teacherken%40gmail.com&teacher=teacherjoe%40gmail.com
+        
+        #### Response Body:
+         ##### Schema:
+            {
+            "students" :
+                [
+                    string
+                ]
+            }
+         ##### Example:
+            {
+            "students" :
+                [
+                "commonstudent1@gmail.com", 
+                "commonstudent2@gmail.com",
+                "student_only_under_teacher_ken@gmail.com"
+                ]
+            }
+        ##### Status code: 200
+
+    ### Suspend Student
+    This endpoint is used to suspend given student.
+        #### Request URL:
+            GET https://d3hiring-dev-assessment.azurewebsites.net/api/suspend
+        
+        #### Response Body:
+         ##### Schema:
+           {
+                "student" : string
+            }
+         ##### Example:
+            {
+                "student" : "studentmary@gmail.com"
+            }
+        ##### Status code: 200
+
+
 details of end points
 its schema like request body and response
 

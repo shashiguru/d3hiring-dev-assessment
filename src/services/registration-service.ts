@@ -1,15 +1,12 @@
 import { Registration } from "../entity/registration";
 import { AppDataSource } from "../infrastucture/data-source";
-import StudentService from "./student-service";
-import TeacherService from "./teacher-service";
+import { IStudentService } from "./student-service";
+import { ITeacherService} from "./teacher-service";
 
-export default class Registrtionservice{
+export class Registrtionservice{
 
-    teacherService:TeacherService;
-    studentService:StudentService;
-    constructor() {
-        this.teacherService= new TeacherService();
-        this.studentService= new StudentService();
+    constructor(private teacherService:ITeacherService,
+        private studentService:IStudentService,) {
     }
 
     private async Register(studentEmailId:string, teacherEmailId:string):Promise<void>{
@@ -28,4 +25,8 @@ export default class Registrtionservice{
         });
         return true;
     }
+}
+
+export interface IRegistrtionservice{
+    CreateRegitration(teacherEmailId:string, studentEmailIds:Array<string>):Promise<boolean>
 }

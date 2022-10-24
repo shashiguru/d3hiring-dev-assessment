@@ -1,8 +1,7 @@
 import { Teacher } from "../entity/teacher";
 import { AppDataSource } from "../infrastucture/data-source";
-import StudentService from "./student-service";
 
-export default class TeacherService{
+export class TeacherService{
 
     constructor() {
     }
@@ -20,4 +19,8 @@ export default class TeacherService{
         return true;
     }
     
+}
+
+export interface ITeacherService{
+    CreateTeacher(emailId: string): Promise<boolean>
 }

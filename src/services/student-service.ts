@@ -2,7 +2,7 @@ import { Registration } from "../entity/registration";
 import { Student } from "../entity/student";
 import { AppDataSource } from "../infrastucture/data-source";
 
-export default class StudentService {
+export class StudentService {
 
     public async CreateStudent(studentEmailId: string): Promise<void> {
         let student = new Student();
@@ -59,4 +59,11 @@ export default class StudentService {
         return notifiedstudents;
     }
 
+}
+
+export interface IStudentService{
+    RetrieveforNotifications(teacher:string, notification:string): Promise<Array<string>>
+    GetCommonStudents(emailIds:any):Promise<Array<string>>
+    SuspendStudent(emailId: string): Promise<boolean>
+    CreateStudent(studentEmailId: string): Promise<void>
 }

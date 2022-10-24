@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan= require('morgan');
-import { DataSource } from "typeorm";
 import { AppDataSource } from "../infrastucture/data-source";
 import {routes} from "./administration/router";
+import { StudentService }  from "../services/student-service";
+import { TeacherService } from "../services/teacher-service";
+import { Registrtionservice } from "../services/registration-service";
 
 // defining the Express app
 const app = express();
@@ -19,8 +21,19 @@ app.use(bodyParser.json());
 //enabling logging
 app.use(morgan('dev'));
 
+const services = async (req, res, next) => {
+  let ss = new StudentService();
+  let ts = new TeacherService();
+  req.services = Object.freeze({
+    IStudentService : ss,
+    ITeacherService : ts,
+    IRegistrtionservice: new Registrtionservice(ts, ss)
+  });
+  next()
+}
+
 // enabling routing of API
-app.use('/api', routes);
+app.use('/api', services, routes);
 
 //initializing databse setup
 AppDataSource.initialize().then(async () => {
