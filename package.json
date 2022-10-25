@@ -1,7 +1,7 @@
 {
    "name": "d3hiring-dev-assessment",
    "version": "0.0.1",
-   "description": "Awesome project developed with TypeORM.",
+   "description": "Assessment of d3hiring",
    "type": "commonjs",
    "devDependencies": {
       "@types/jest": "^29.2.0",
