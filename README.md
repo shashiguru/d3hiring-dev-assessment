@@ -20,8 +20,11 @@
         `host: "sql6.freemysqlhosting.net",
         port: 3306,
         username: "sql6528223",
-        password: "qilk9h8bDV",
+        password: password is provided in email,
         database: "sql6528223"`
+
+    ### Note: Please refer to the email for the password, i have sent in completion of assessment.
+
 3. Database has below tables
    ### Student
     #### Schema:
@@ -44,12 +47,20 @@
 
 ## Test cases
 1. For test cases, below are libraries used.
-    ### mocha
-    ### superfast
-    ### should
-2. To run the test cases 
+    #### jest
+    #### mocha
+    #### superfast
+    #### should
+ ### Unit Test:
+ 1. Unit test cases covered the testing of business logic of the application. So i have covered the services of application.
+ 2. To run the unit test cases run the below command
+    `npm run unit-test`
+
+ ### Integration Test:
+ 1. Integration test covers the end to end funtionlaity of the application. It covered functionality of the end points.
+ 2. To run the test cases 
     1. Run the API with command `npm run start`.
-    2. Run test cases with command `mocha`.
+    2. Run test cases with command `npm run int-test`.
 
 ## API Details
 1. Below are API endpoints has implemented.
