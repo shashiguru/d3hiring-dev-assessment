@@ -1,7 +1,7 @@
 # NodeJS API Asessment
 
 ## Repository
-1. Source code is stored in GitHub and it can be accessible at URL
+1. Source code is stored in GitHub and it can be accessible at https://github.com/shashiguru/d3hiring-dev-assessment
 
 ## Hosting
 1. API is deployed in AZURE App Service with conguration.
