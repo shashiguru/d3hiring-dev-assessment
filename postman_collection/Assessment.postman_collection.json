@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"teacher\": \"sannvika@gmail.com\",\r\n  \"students\":\r\n    [\r\n      \"new@gmail.com\",\r\n      \"vetri@gmail.com\",\r\n      \"sumanth@gmail.com\"\r\n    ]\r\n}",
+							"raw": "{\r\n  \"teacher\": \"sannvika@gmail.com\",\r\n  \"students\":\r\n    [\r\n      \"podapati@gmail.com\",\r\n      \"vetri@gmail.com\",\r\n      \"sumaasnth@gmail.com\"\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -42,7 +42,18 @@
 					"name": "HealthCheck",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api"
+							]
+						}
 					},
 					"response": []
 				},
@@ -52,9 +63,21 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "commonstudents",
+							"raw": "http://localhost:3000/api/commonstudents?teacher=sannvika@gmail.com",
+							"protocol": "http",
 							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
 								"commonstudents"
+							],
+							"query": [
+								{
+									"key": "teacher",
+									"value": "sannvika@gmail.com"
+								}
 							]
 						}
 					},
@@ -63,16 +86,58 @@
 				{
 					"name": "Suspend",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"student\" : \"suneel@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/suspend",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"suspend"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "RetrieveforNotifications",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"teacher\":  \"sannvika@gmail.com\",\r\n  \"notification\": \"Hey everybody @guru@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/retrievefornotifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"retrievefornotifications"
+							]
+						}
 					},
 					"response": []
 				}
@@ -87,9 +152,26 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "commonstudents",
+							"raw": "https://d3hiring-dev-assessment.azurewebsites.net/api/commonstudents?teacher=teacherken%40gmail.com&teacher=teacherjoe%40gmail.com",
+							"protocol": "https",
 							"host": [
+								"d3hiring-dev-assessment",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
 								"commonstudents"
+							],
+							"query": [
+								{
+									"key": "teacher",
+									"value": "teacherken%40gmail.com"
+								},
+								{
+									"key": "teacher",
+									"value": "teacherjoe%40gmail.com"
+								}
 							]
 						}
 					},
@@ -98,8 +180,30 @@
 				{
 					"name": "RetrieveforNotifications",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"teacher\":  \"shashiguru@gmail.com\",\r\n  \"notification\": \"Hey everybody @guru@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://d3hiring-dev-assessment.azurewebsites.net/api/retrievefornotifications",
+							"protocol": "https",
+							"host": [
+								"d3hiring-dev-assessment",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"retrievefornotifications"
+							]
+						}
 					},
 					"response": []
 				},
@@ -107,15 +211,49 @@
 					"name": "HealthCheck",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://d3hiring-dev-assessment.azurewebsites.net/api",
+							"protocol": "https",
+							"host": [
+								"d3hiring-dev-assessment",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Suspend",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"student\" : \"suneel@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://d3hiring-dev-assessment.azurewebsites.net/api/suspend",
+							"protocol": "https",
+							"host": [
+								"d3hiring-dev-assessment",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"suspend"
+							]
+						}
 					},
 					"response": []
 				},
@@ -134,12 +272,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/register",
-							"protocol": "http",
+							"raw": "https://d3hiring-dev-assessment.azurewebsites.net/api/register",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"d3hiring-dev-assessment",
+								"azurewebsites",
+								"net"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"register"
