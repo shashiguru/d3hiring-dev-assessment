@@ -6,11 +6,11 @@ import { Teacher } from "../entity/teacher"
 
 export const AppDataSource = new DataSource({
     type: "mysql",
-    host: "sql6.freemysqlhosting.net",
+    host: "sql12.freemysqlhosting.net",
     port: 3306,
-    username: "sql6528223",
-    password: "qilk9h8bDV",
-    database: "sql6528223",
+    username: "sql12529989",
+    password: "H41PrWkcn2",
+    database: "sql12529989",
     synchronize: true,
     logging: false,
     entities: [Student, Teacher, Registration],
